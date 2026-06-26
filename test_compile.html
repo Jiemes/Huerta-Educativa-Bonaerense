@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <pre id="output">Compiling...</pre>
+  <script>
+    try {
+      const code = `
+        function App() {
+          return <h1>Hello World!</h1>;
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+      `;
+      const output = Babel.transform(code, { presets: ['react'] }).code;
+      document.getElementById('output').textContent = output;
+    } catch (e) {
+      document.getElementById('output').textContent = "ERROR: " + e.toString() + "\n" + e.stack;
+    }
+  </script>
+</body>
+</html>
